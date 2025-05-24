@@ -26,10 +26,11 @@
       "request": "launch",
       "name": "Debug (OpenOCD)",
       "servertype": "openocd",
+      "gdbPath": "gdb-multiarch",
       "cwd": "${workspaceRoot}",
       "preLaunchTask": "Cargo Build (debug)",
       "runToEntryPoint": "main",
-      "executable": "./target/thumbv7em-none-eabihf/debug/{{project-name}}",
+      "executable": "${workspaceRoot}/target/thumbv7em-none-eabihf/debug/{{project-name}}",
       /* Run `cargo build --example itm` and uncomment this line to run itm example */
       // "executable": "./target/thumbv7em-none-eabihf/debug/examples/itm",
       "device": "STM32F303VCT6",
@@ -43,6 +44,14 @@
         "source": "probe",
         "decoders": [{ "type": "console", "label": "ITM", "port": 0 }]
       }
+    },
+    {
+      "name": "Flash Board",
+      "request": "launch",
+      "type": "lldb",
+      "program": "true", // won't be used
+      "preLaunchTask": "Flash Development Board",
+      "cwd": "${workspaceFolder}"
     }
   ]
 }
